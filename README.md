@@ -6,8 +6,12 @@ How to use:
 
 Put ipv6tunnelcfg.sh at /etc/NetworkManager/dispatcher.d/ :
 
-######sudo cp ipv6tunnelcfg.sh /etc/NetworkManager/dispatcher.d/
+```bash
+sudo cp ipv6tunnelcfg.sh /etc/NetworkManager/dispatcher.d/
+```
 
 Give ipv6tunnelcfg.sh excute permission:
 
-######sudo chmod 744 /etc/NetworkManager/dispatcher.d/ipv6tunnelcfg.sh
+```bash
+sudo chmod 744 /etc/NetworkManager/dispatcher.d/ipv6tunnelcfg.sh
+```
