@@ -16,7 +16,7 @@ case "$2" in
       #A bool vairable to denote whether $local_ip is in $tsinghua_ip, true for is, false for not. False as default. 
       in_tsinghua=false
 
-      #loop until one of interfaces have a THU IP
+      #Loop until one of interfaces have a THU IP
       for j in "${local_ips[@]}"
       do
         if [ "$in_tsinghua" == false ]; then
@@ -50,10 +50,10 @@ case "$2" in
           fi
         fi
         :
-        #other codes you want to run after connected when you are on campus.
+        #Other codes you want to run after connected when you are on campus.
       else
         :
-        #other codes you want to run after connected when you are off campus.
+        #Other codes you want to run after connected when you are off campus.
       fi
       ;;
       
@@ -67,7 +67,7 @@ case "$2" in
       #A bool vairable to denote whether $local_ip is in $tsinghua_ip, true for is, false for not. False as default. 
       in_tsinghua=false
 
-      #loop until one of interfaces have a THU IP.
+      #Loop until one of interfaces have a THU IP.
       for j in "${local_ips[@]}"
       do
         if [ "$in_tsinghua" == false ]; then
@@ -88,20 +88,23 @@ case "$2" in
         fi
       done
 
-      #if one of your interfaces down, but another interfaces still in THU net.
+      #If one of your interfaces down, but another interfaces still in THU net.
       if [ "$in_tsinghua" == true ]; then
-        #if the remaining interface is not the former one.
+        #If the remaining interface is not the former one.
         if [ ! -n "`ip tunnel list|grep sit1|grep $local_ip`" ]; then
           ip route del ::/0 via 2402:f000:1:1501::1 dev sit1
           ip link set sit1 down
           ip tunnel del sit1
 
-          ip tunnel add sit1 mode sit remote 166.111.21.1 local $local_ip
-          ifconfig sit1 up
-          ifconfig sit1 add 2402:f000:1:1501:200:5efe:$local_ip/64
-          ip route add ::/0 via 2402:f000:1:1501::1 metric 1
+          #If the system don't get IPv6 address through DHCPv6.
+          if [ ! -n "`/sbin/ifconfig -a|grep inet6|grep Scope:Global`" ]; then
+            ip tunnel add sit1 mode sit remote 166.111.21.1 local $local_ip
+            ifconfig sit1 up
+            ifconfig sit1 add 2402:f000:1:1501:200:5efe:$local_ip/64
+            ip route add ::/0 via 2402:f000:1:1501::1 metric 1
+          fi
         fi
-      #if all of your remaining interfaces not in THU net.
+      #If all of your remaining interfaces not in THU net.
       else
         if [ -n "`ip tunnel list|grep sit1`" ]; then
           ip route del ::/0 via 2402:f000:1:1501::1 dev sit1
