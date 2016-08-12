@@ -40,7 +40,7 @@ case "$2" in
       done
       
       #Wait for DHCPv6
-      sleep 1
+      sleep 2
       
       #If the system get a THU IP.
       if [ "$in_tsinghua" == true ]; then
