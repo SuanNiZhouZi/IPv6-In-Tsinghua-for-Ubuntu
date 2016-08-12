@@ -39,11 +39,10 @@ case "$2" in
         fi
       done
       
-      #Wait for DHCPv6
-      sleep 2
-      
       #If the system get a THU IP.
       if [ "$in_tsinghua" == true ]; then
+        #Wait for DHCPv6
+        sleep 2
         #If the system don't get IPv6 address through DHCPv6.
         if [ ! -n "`/sbin/ifconfig -a|grep inet6|grep Scope:Global`" ]; then
           #If there are not existing tunnel.
