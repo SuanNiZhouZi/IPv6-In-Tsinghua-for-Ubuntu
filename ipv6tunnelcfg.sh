@@ -25,9 +25,9 @@ case "$2" in
             ip_segment=$( echo $i | cut -d"/" -f1 )
             ip_CIDR=$( echo $i | cut -d"/" -f2 )
             IFS=. read -r a b c d <<< "$ip_segment"
-            ip_num="$(((a * 256 ** 3 + b * 256 ** 2 + c * 256 + d)>>(32-ip_CIDR)))"
+            ip_num="$(((a>>24 + b>>16 + c>>8 + d)>>(32-ip_CIDR)))"
             IFS=. read -r a b c d <<< "$j"
-            local_ip_num="$(((a * 256 ** 3 + b * 256 ** 2 + c * 256 + d)>>(32-ip_CIDR)))"
+            local_ip_num="$(((a>>24 + b>>16 + c>>8 + d)>>(32-ip_CIDR)))"
             if [ "$ip_num" == "$local_ip_num" ]; then
               in_tsinghua=true
               local_ip=$j
@@ -78,9 +78,9 @@ case "$2" in
             ip_segment=$( echo $i | cut -d"/" -f1 )
             ip_CIDR=$( echo $i | cut -d"/" -f2 )
             IFS=. read -r a b c d <<< "$ip_segment"
-            ip_num="$(((a * 256 ** 3 + b * 256 ** 2 + c * 256 + d)>>(32-ip_CIDR)))"
+            ip_num="$(((a>>24 + b>>16 + c>>8 + d)>>(32-ip_CIDR)))"
             IFS=. read -r a b c d <<< "$j"
-            local_ip_num="$(((a * 256 ** 3 + b * 256 ** 2 + c * 256 + d)>>(32-ip_CIDR)))"
+            local_ip_num="$(((a>>24 + b>>16 + c>>8 + d)>>(32-ip_CIDR)))"
             if [ "$ip_num" == "$local_ip_num" ]; then
               in_tsinghua=true
               local_ip=$j
