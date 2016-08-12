@@ -8,7 +8,7 @@ fi
 case "$2" in
     up)
       #Get established connections' IP addresses.
-      local_ips=($(echo `/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "{addr}:" ` | tr "\n" " "))
+      local_ips=(`/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "{addr}:"|tr "\n" " "`)
       
       #IP addresses of Tsinghua University.
       tsinghua_ip=(59.66.0.0/16 101.5.0.0/16 101.6.0.0/16 106.120.132.0/22 118.229.0.0/19 166.111.0.0/16 183.172.0.0/16 183.173.0.0/16 202.112.3.0/24 202.112.35.0/24 202.112.39.0/24 202.112.43.0/24 202.112.44.0/24 202.112.45.0/24 202.112.47.0/24 202.112.48.0/24 202.112.49.0/24 202.112.50.0/24 202.112.51.0/24 202.112.52.0/24 202.112.53.0/24 202.112.54.0/24 202.112.55.0/24 202.112.56.0/24 202.112.57.0/24 202.112.58.0/24 202.38.99.0/24 211.68.126.0/24 211.68.17.0/24)
@@ -34,6 +34,8 @@ case "$2" in
               break
             fi
           done
+        else
+          break
         fi
       done
       
@@ -59,7 +61,7 @@ case "$2" in
       
     down)
       #Get established connections' IP addresses.
-      local_ips=($(echo `/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "{addr}:" ` | tr "\n" " "))
+      local_ips=(`/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "{addr}:"|tr "\n" " "`)
       
       #IP addresses of Tsinghua University.
       tsinghua_ip=(59.66.0.0/16 101.5.0.0/16 101.6.0.0/16 106.120.132.0/22 118.229.0.0/19 166.111.0.0/16 183.172.0.0/16 183.173.0.0/16 202.112.3.0/24 202.112.35.0/24 202.112.39.0/24 202.112.43.0/24 202.112.44.0/24 202.112.45.0/24 202.112.47.0/24 202.112.48.0/24 202.112.49.0/24 202.112.50.0/24 202.112.51.0/24 202.112.52.0/24 202.112.53.0/24 202.112.54.0/24 202.112.55.0/24 202.112.56.0/24 202.112.57.0/24 202.112.58.0/24 202.38.99.0/24 211.68.126.0/24 211.68.17.0/24)
@@ -85,6 +87,8 @@ case "$2" in
               break
             fi
           done
+        else
+          break
         fi
       done
 
