@@ -39,6 +39,9 @@ case "$2" in
         fi
       done
       
+      #Wait for DHCPv6
+      sleep 1
+      
       #If the system get a THU IP.
       if [ "$in_tsinghua" == true ]; then
         #If the system don't get IPv6 address through DHCPv6.
