@@ -9,12 +9,18 @@ The code is still dirty. It works on most occations, but gives buggy behaviors s
 Download ipv6tunnelcfg.sh:
 
 ```bash
-wget https://github.com/SuanNiZhouZi/IPv6-In-Tsinghua-for-Ubuntu/blob/master/ipv6tunnelcfg.sh
+wget https://github.com/SuanNiZhouZi/IPv6-In-Tsinghua-for-Ubuntu/archive/v0.5.tar.gz
+```
+
+Unzip IPv6-In-Tsinghua-for-Ubuntu-0.5.tar.gz
+```bash
+tar -xf IPv6-In-Tsinghua-for-Ubuntu-0.5.tar.gz
 ```
 
 Put ipv6tunnelcfg.sh at /etc/NetworkManager/dispatcher.d/ :
 
 ```bash
+cd IPv6-In-Tsinghua-for-Ubuntu-0.5
 sudo cp ipv6tunnelcfg.sh /etc/NetworkManager/dispatcher.d/
 ```
 
