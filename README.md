@@ -4,7 +4,7 @@ Set up ipv6 tunnel automaticly when available for ubuntu in THU. For Linux PCs c
 
 The code is still dirty. It works on most occations, but gives buggy behaviors sometimes (I'm still testing). 
 
-##How to use:
+## How to use:
 
 Download ipv6tunnelcfg.sh:
 
